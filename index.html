@@ -1,1 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bloom & Petal | Flower Shop</title>
 
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #fff9f7;
+      color: #3d3030;
+    }
+
+    /* NAVBAR */
+    nav {
+      height: 75px;
+      background: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 8%;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.06);
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: bold;
+      color: #d45b78;
+    }
+
+    .logo span {
+      color: #79a86b;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #4a3a3a;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #d45b78;
+    }
+
+    .cart {
+      background: #d45b78;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 620px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 70px 9%;
+      background: linear-gradient(135deg, #fff1f3, #fffaf2);
+    }
+
+    .hero-text {
+      max-width: 550px;
+    }
+
+    .hero-text small {
+      color: #d45b78;
+      font-size: 16px;
+      letter-spacing: 2px;
+    }
+
+    .hero-text h1 {
+      font-family: Georgia, serif;
+      font-size: 62px;
+      line-height: 1.1;
+      margin: 18px 0;
+      color: #402d2d;
+    }
+
+    .hero-text h1 span {
+      color: #d45b78;
+    }
+
+    .hero-text p {
+      color: #756767;
+      font-size: 17px;
+      line-height: 1.8;
+      margin-bottom: 30px;
+    }
+
+    .hero-btn {
+      background: #d45b78;
+      color: white;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 30px;
+      display: inline-block;
+      transition: 0.3s;
+    }
+
+    .hero-btn:hover {
+      background: #b94462;
+      transform: translateY(-3px);
+    }
+
+    .hero-image {
+      width: 430px;
+      height: 430px;
+      border-radius: 50%;
+      background: #f5dce1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 180px;
+      box-shadow: 0 20px 50px rgba(180, 100, 120, 0.2);
+    }
+
+    /* CATEGORIES */
+    .section {
+      padding: 80px 8%;
+      text-align: center;
+    }
+
+    .section-title {
+      font-family: Georgia, serif;
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      color: #817373;
+      margin-bottom: 45px;
+    }
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .category {
+      width: 180px;
+      background: white;
+      padding: 25px 15px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+      transition: 0.3s;
+    }
+
+    .category:hover {
+      transform: translateY(-8px);
+    }
+
+    .category .icon {
+      font-size: 45px;
+      margin-bottom: 12px;
+    }
+
+    .category h3 {
+      color: #493838;
+    }
+
+    /* PRODUCTS */
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.07);
+      transition: 0.3s;
+      text-align: left;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+    }
+
+    .flower-img {
+      height: 230px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 100px;
+      background: #fff0f2;
+    }
+
+    .card:nth-child(2) .flower-img {
+      background: #fff6df;
+    }
+
+    .card:nth-child(3) .flower-img {
+      background: #f1e9ff;
+    }
+
+    .card:nth-child(4) .flower-img {
+      background: #e9f5e8;
+    }
+
+    .card-content {
+      padding: 20px;
+    }
+
+    .card-content h3 {
+      font-family: Georgia, serif;
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .card-content p {
+      color: #888;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .price {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .price strong {
+      color: #d45b78;
+      font-size: 19px;
+    }
+
+    .add {
+      border: none;
+      background: #f8dce2;
+      color: #c44867;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    /* ABOUT */
+    .about {
+      background: #f7eee8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 70px;
+      text-align: left;
+    }
+
+    .about-icon {
+      width: 300px;
+      height: 300px;
+      background: #f1d5d8;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 120px;
+    }
+
+    .about-text {
+      max-width: 500px;
+    }
+
+    .about-text h2 {
+      font-family: Georgia, serif;
+      font-size: 42px;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      line-height: 1.8;
+      color: #746666;
+    }
+
+    /* NEWSLETTER */
+    .newsletter {
+      background: #d45b78;
+      color: white;
+      text-align: center;
+      padding: 70px 20px;
+    }
+
+    .newsletter h2 {
+      font-family: Georgia, serif;
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .newsletter p {
+      margin-bottom: 25px;
+      opacity: 0.9;
+    }
+
+    .newsletter input {
+      width: 300px;
+      max-width: 80%;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 25px;
+      outline: none;
+    }
+
+    .newsletter button {
+      padding: 14px 25px;
+      border: none;
+      border-radius: 25px;
+      margin-left: 8px;
+      background: white;
+      color: #d45b78;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #352828;
+      color: white;
+      text-align: center;
+      padding: 25px;
+    }
+
+    footer p {
+      opacity: 0.7;
+      font-size: 14px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 50px;
+      }
+
+      .hero-image {
+        width: 300px;
+        height: 300px;
+        font-size: 120px;
+      }
+
+      .about {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav ul {
+        display: none;
+      }
+
+      .hero-text h1 {
+        font-size: 43px;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .newsletter button {
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">Bloom<span>&</span>Petal 🌸</div>
+
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <button class="cart">🛒 Cart <span id="cartCount">0</span></button>
+  </nav>
+
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+
+    <div class="hero-text">
+      <small>FRESH FLOWERS • HAPPY MOMENTS</small>
+
+      <h1>
+        Say it with
+        <span>beautiful flowers.</span>
+      </h1>
+
+      <p>
+        Discover fresh, hand-picked flowers beautifully arranged
+        for birthdays, anniversaries, celebrations and every
+        special moment.
+      </p>
+
+      <a href="#shop" class="hero-btn">Shop Flowers →</a>
+    </div>
+
+    <div class="hero-image">
+      🌷
+    </div>
+
+  </section>
+
+
+  <!-- CATEGORIES -->
+  <section class="section">
+
+    <h2 class="section-title">Shop by Category</h2>
+    <p class="section-subtitle">
+      Find the perfect flowers for every occasion.
+    </p>
+
+    <div class="categories">
+
+      <div class="category">
+        <div class="icon">🌹</div>
+        <h3>Roses</h3>
+      </div>
+
+      <div class="category">
+        <div class="icon">🌷</div>
+        <h3>Tulips</h3>
+      </div>
+
+      <div class="category">
+        <div class="icon">🌻</div>
+        <h3>Sunflowers</h3>
+      </div>
+
+      <div class="category">
+        <div class="icon">💐</div>
+        <h3>Bouquets</h3>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- PRODUCTS -->
+  <section class="section" id="shop">
+
+    <h2 class="section-title">Our Best Sellers</h2>
+    <p class="section-subtitle">
+      Fresh flowers, lovingly arranged for you.
+    </p>
+
+    <div class="products">
+
+      <div class="card">
+        <div class="flower-img">🌹</div>
+
+        <div class="card-content">
+          <h3>Rose Romance</h3>
+          <p>12 premium red roses</p>
+
+          <div class="price">
+            <strong>$35</strong>
+            <button class="add" onclick="addToCart()">+</button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card">
+        <div class="flower-img">🌷</div>
+
+        <div class="card-content">
+          <h3>Spring Tulips</h3>
+          <p>Beautiful colorful tulips</p>
+
+          <div class="price">
+            <strong>$29</strong>
+            <button class="add" onclick="addToCart()">+</button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card">
+        <div class="flower-img">💐</div>
+
+        <div class="card-content">
+          <h3>Lovely Bouquet</h3>
+          <p>Mixed seasonal flowers</p>
+
+          <div class="price">
+            <strong>$45</strong>
+            <button class="add" onclick="addToCart()">+</button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card">
+        <div class="flower-img">🌻</div>
+
+        <div class="card-content">
+          <h3>Sunny Day</h3>
+          <p>Bright yellow sunflowers</p>
+
+          <div class="price">
+            <strong>$32</strong>
+            <button class="add" onclick="addToCart()">+</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ABOUT -->
+  <section class="section about" id="about">
+
+    <div class="about-icon">🌸</div>
+
+    <div class="about-text">
+      <h2>Flowers made with love.</h2>
+
+      <p>
+        At Bloom & Petal, we believe flowers have the power to
+        make ordinary moments unforgettable. Our florists carefully
+        select every flower and create elegant arrangements with
+        love and attention to detail.
+      </p>
+    </div>
+
+  </section>
+
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter" id="contact">
+
+    <h2>Stay in bloom 🌷</h2>
+
+    <p>
+      Subscribe for special offers and beautiful flower inspiration.
+    </p>
+
+    <input type="email" placeholder="Enter your email">
+
+    <button onclick="subscribe()">Subscribe</button>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Bloom & Petal. Made with 🌸 and love.</p>
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+  <script>
+
+    let cart = 0;
+
+    function addToCart() {
+      cart++;
+
+      document.getElementById("cartCount").innerText = cart;
+
+      alert("🌸 Flower added to your cart!");
+    }
+
+    function subscribe() {
+      let email = document.querySelector(".newsletter input").value;
+
+      if (email === "") {
+        alert("Please enter your email.");
+      } else {
+        alert("🌷 Thank you for subscribing!");
+      }
+    }
+
+  </script>
+
+</body>
+</html>
